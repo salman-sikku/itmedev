@@ -168,7 +168,7 @@ export default function Intro() {
             setTimeOfLastClick(Date.now());
           }}
         >
-          <span className="relative z-10">Contact me here</span>
+          <span className="relative z-10">Get in Touch</span>
           <BsArrowRight className="opacity-80 group-hover:translate-x-1 group-hover:opacity-100 transition-all duration-300 relative z-10" />
           
           {/* Subtle shine effect */}
@@ -178,7 +178,8 @@ export default function Intro() {
         {/* Secondary Buttons Container */}
         <div className="flex items-center gap-3">
           {/* Download CV Button */}
-          <motion.a
+
+          {/* <motion.a
             className="group bg-white dark:bg-white/10 px-6 py-4 flex items-center gap-2 rounded-full outline-none focus:scale-105 hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer border border-gray-200 dark:border-white/20 shadow-lg hover:shadow-xl font-medium"
             href="/CV.pdf"
             download
@@ -187,7 +188,7 @@ export default function Intro() {
           >
             <span className="text-gray-700 dark:text-gray-200">Download CV</span>
             <HiDownload className="opacity-60 group-hover:translate-y-1 group-hover:opacity-100 transition-all duration-300 text-gray-600 dark:text-gray-300" />
-          </motion.a>
+          </motion.a> */}
 
           {/* Social Links */}
           <div className="flex gap-2">
