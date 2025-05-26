@@ -5,6 +5,38 @@ import SectionHeading from "./section-heading";
 import { motion } from "framer-motion";
 import { useSectionInView } from "@/lib/hooks";
 
+// Animation variants for better organization
+const sectionVariants = {
+  hidden: { 
+    opacity: 0, 
+    y: 50 
+  },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut",
+      staggerChildren: 0.2
+    }
+  }
+};
+
+const paragraphVariants = {
+  hidden: { 
+    opacity: 0, 
+    y: 20 
+  },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: "easeOut"
+    }
+  }
+};
+
 export default function About() {
   const { ref } = useSectionInView("About");
 
@@ -12,38 +44,51 @@ export default function About() {
     <motion.section
       ref={ref}
       className="mb-28 max-w-[45rem] text-center leading-8 sm:mb-40 scroll-mt-28"
-      initial={{ opacity: 0, y: 100 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.175 }}
+      variants={sectionVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-100px" }}
       id="about"
     >
       <SectionHeading>About me</SectionHeading>
-      <p className="mb-3">
-        After graduating with a degree in{" "}
-        <span className="font-medium">Accounting</span>, I decided to pursue my
-        passion for programming. I enrolled in a coding bootcamp and learned{" "}
-        <span className="font-medium">full-stack web development</span>.{" "}
-        <span className="italic">My favorite part of programming</span> is the
-        problem-solving aspect. I <span className="underline">love</span> the
-        feeling of finally figuring out a solution to a problem. My core stack
-        is{" "}
-        <span className="font-medium">
-          React, Next.js, Node.js, and MongoDB
-        </span>
-        . I am also familiar with TypeScript and Prisma. I am always looking to
-        learn new technologies. I am currently looking for a{" "}
-        <span className="font-medium">full-time position</span> as a software
-        developer.
-      </p>
+      
+      <div className="space-y-4">
+        <motion.p 
+          className="mb-3 text-gray-700 dark:text-gray-300"
+          variants={paragraphVariants}
+        >
+          I started learning <span className="font-medium">web development</span> out of pure interest and curiosity. 
+          I'm a self-taught developer who recently began working on{" "}
+          <span className="font-medium">freelance projects</span>.{" "}
+          <span className="italic">What I love most about coding</span> is turning 
+          ideas into real, usable products. My current stack includes{" "}
+          <span className="font-medium">React, Next.js, Node.js, and MongoDB</span>. 
+          I'm also learning <span className="font-medium">TypeScript</span> and always 
+          excited to explore new tools and technologies. I'm working towards landing a{" "}
+          <span className="font-medium">full-time role</span> as a software developer.
+        </motion.p>
 
-      <p>
-        <span className="italic">When I'm not coding</span>, I enjoy playing
-        video games, watching movies, and playing with my dog. I also enjoy{" "}
-        <span className="font-medium">learning new things</span>. I am currently
-        learning about{" "}
-        <span className="font-medium">history and philosophy</span>. I'm also
-        learning how to play the guitar.
-      </p>
+        <motion.p 
+          className="text-gray-700 dark:text-gray-300"
+          variants={paragraphVariants}
+        >
+          <span className="italic">When I'm not coding</span>, I like watching tech 
+          videos, learning about new frameworks, and sharpening my skills. I also enjoy{" "}
+          <span className="font-medium">exploring design trends</span> and thinking 
+          about how to build better user experiences. My journey has just started, 
+          and I'm always curious and open to learning something new every day.
+        </motion.p>
+      </div>
+
+      {/* Optional: Add a subtle call-to-action */}
+      <motion.div 
+        className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700"
+        variants={paragraphVariants}
+      >
+        <p className="text-sm text-gray-500 dark:text-gray-400 italic">
+          Currently open to new opportunities and collaborations
+        </p>
+      </motion.div>
     </motion.section>
   );
 }

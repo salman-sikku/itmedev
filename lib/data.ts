@@ -5,6 +5,9 @@ import { LuGraduationCap } from "react-icons/lu";
 import corpcommentImg from "@/public/corpcomment.png";
 import rmtdevImg from "@/public/rmtdev.png";
 import wordanalyticsImg from "@/public/wordanalytics.png";
+import Sportelo from "@/public/Screenshot Sportelo.jpg";
+import Holikamaal from "@/public/Screenshot holikamaal.jpg";
+import FoodAi from "@/public/Screenshot foodAi.jpg";
 
 export const links = [
   {
@@ -24,8 +27,8 @@ export const links = [
     hash: "#skills",
   },
   {
-    name: "Experience",
-    hash: "#experience",
+    name: "Journey",
+    hash: "#journey",
   },
   {
     name: "Contact",
@@ -35,52 +38,55 @@ export const links = [
 
 export const experiencesData = [
   {
-    title: "Graduated bootcamp",
-    location: "Miami, FL",
+    title: "Started Learning Web Development",
+    location: "Remote",
     description:
-      "I graduated after 6 months of studying. I immediately found a job as a front-end developer.",
+      "I began my web development journey in early 2024, learning everything from scratch with self-study and hands-on practice. I focused on modern tools like HTML, CSS, JavaScript, and React.",
     icon: React.createElement(LuGraduationCap),
-    date: "2019",
+    date: "Jan 2024",
   },
   {
-    title: "Front-End Developer",
-    location: "Orlando, FL",
+    title: "Completed Full-Stack Web Development",
+    location: "Remote",
     description:
-      "I worked as a front-end developer for 2 years in 1 job and 1 year in another job. I also upskilled to the full stack.",
+      "By the end of 2024, I had a strong grasp on full-stack development. I built multiple projects using React, Next.js, Node.js, and MongoDB to solidify my learning.",
     icon: React.createElement(CgWorkAlt),
-    date: "2019 - 2021",
+    date: "Late 2024",
   },
   {
-    title: "Full-Stack Developer",
-    location: "Houston, TX",
+    title: "Freelance & SaaS Developer",
+    location: "Remote",
     description:
-      "I'm now a full-stack developer working as a freelancer. My stack includes React, Next.js, TypeScript, Tailwind, Prisma and MongoDB. I'm open to full-time opportunities.",
+      "In 2025, I'm actively working on SaaS products — both for clients and my own ideas. My stack includes React, Next.js, TypeScript, Tailwind, Prisma, and MongoDB. I'm currently open to full-time opportunities.",
     icon: React.createElement(FaReact),
-    date: "2021 - present",
+    date: "2025 - Present",
   },
 ] as const;
 
 export const projectsData = [
   {
-    title: "CorpComment",
+    title: "Sportelo",
     description:
-      "I worked as a full-stack developer on this startup project for 2 years. Users can give public feedback to companies.",
-    tags: ["React", "Next.js", "MongoDB", "Tailwind", "Prisma"],
-    imageUrl: corpcommentImg,
+      "Built a modern launch page for a sports e-commerce startup with responsive design and waitlist form integration.",
+    tags: ["React", "TypeScript", "Next.js", "MongoDB", "Tailwind", "Framer"],
+    imageUrl: Sportelo,
+    projectUrl: "https://www.sportelo.shop/",
   },
   {
-    title: "rmtDev",
+    title: "Holikamaal",
     description:
-      "Job board for remote developer jobs. I was the front-end developer. It has features like filtering, sorting and pagination.",
+      "Developed a complete Holi-themed e-commerce site with product categories, search, cart, and responsive UI for a smooth festive shopping experience.",
     tags: ["React", "TypeScript", "Next.js", "Tailwind", "Redux"],
-    imageUrl: rmtdevImg,
+    imageUrl: Holikamaal,
+    projectUrl: "https://www.holikamaal.in/",
   },
   {
-    title: "Word Analytics",
+    title: "Food AI",
     description:
-      "A public web app for quick analytics on text. It shows word count, character count and social media post limits.",
-    tags: ["React", "Next.js", "SQL", "Tailwind", "Framer"],
-    imageUrl: wordanalyticsImg,
+      "Built an AI-powered app where users can upload food images and instantly get detailed nutritional information like calories, carbs, fats, and proteins.",
+    tags: ["React", "TypeScript", "Next.js", "Tailwind", "Gen AI"],
+    imageUrl: FoodAi,
+    projectUrl: "https://foodlensai.vercel.app/",
   },
 ] as const;
 
@@ -98,7 +104,7 @@ export const skillsData = [
   "MongoDB",
   "Redux",
   "GraphQL",
-  "Apollo",
+  "Aws",
   "Express",
   "PostgreSQL",
   "Python",

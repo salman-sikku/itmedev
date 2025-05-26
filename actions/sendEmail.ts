@@ -1,47 +1,59 @@
-"use server";
+'use server';
 
-import React from "react";
-import { Resend } from "resend";
-import { validateString, getErrorMessage } from "@/lib/utils";
-import ContactFormEmail from "@/email/contact-form-email";
+import nodemailer from 'nodemailer';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+interface SendEmailResponse {
+  success?: boolean;
+  message?: string;
+  error?: string;
+}
 
-export const sendEmail = async (formData: FormData) => {
-  const senderEmail = formData.get("senderEmail");
-  const message = formData.get("message");
+// Transporter
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
+  },
+});
 
-  // simple server-side validation
-  if (!validateString(senderEmail, 500)) {
-    return {
-      error: "Invalid sender email",
-    };
-  }
-  if (!validateString(message, 5000)) {
-    return {
-      error: "Invalid message",
-    };
-  }
-
-  let data;
+export async function sendEmail(formData: FormData): Promise<SendEmailResponse> {
   try {
-    data = await resend.emails.send({
-      from: "Contact Form <onboarding@resend.dev>",
-      to: "bytegrad@gmail.com",
-      subject: "Message from contact form",
-      reply_to: senderEmail,
-      react: React.createElement(ContactFormEmail, {
-        message: message,
-        senderEmail: senderEmail,
-      }),
-    });
-  } catch (error: unknown) {
-    return {
-      error: getErrorMessage(error),
-    };
-  }
+    const senderEmail = formData.get('senderEmail') as string;
+    const message = formData.get('message') as string;
 
-  return {
-    data,
-  };
-};
+    if (!senderEmail || !message) {
+      return { error: 'Email and message are required fields' };
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(senderEmail)) {
+      return { error: 'Please enter a valid email address' };
+    }
+
+    if (message.length < 10 || message.length > 5000) {
+      return { error: 'Message must be between 10 and 5000 characters' };
+    }
+
+    const mailOptions = {
+      from: {
+        name: 'Portfolio Contact Form',
+        address: process.env.EMAIL_USER || '',
+      },
+      to: process.env.EMAIL_TO || '',
+      replyTo: senderEmail,
+      subject: `New Contact Form Message from ${senderEmail}`,
+      html: `<h2>New Contact Form Submission</h2>
+             <p><strong>From:</strong> ${senderEmail}</p>
+             <p><strong>Message:</strong> ${message}</p>`,
+      text: `New message from: ${senderEmail}\n\nMessage: ${message}`,
+    };
+
+    await transporter.sendMail(mailOptions);
+
+    return { success: true, message: 'Email sent successfully!' };
+  } catch (error) {
+    console.error('Error sending email:', error);
+    return { error: 'Failed to send email. Please try again later.' };
+  }
+}
